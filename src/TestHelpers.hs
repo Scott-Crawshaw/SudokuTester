@@ -5,7 +5,7 @@ import SudokuCorrect
 import SudokuFaulty
 
 superEasy :: Grid
-superEasy =  ["2495716.8","861432975","57398.142","725698413","69814.257","314725869","9378..526","1..369784","486257391"]
+superEasy =  ["2495.1638","861432975","573986142","72569.413","698143257","3147.5869","937814526","152.69784","486257391"]
 
 checkAllGridsID :: (Grid -> Grid) -> Bool
 checkAllGridsID f = (f easy == easy) && (f gentle == gentle) && (f diabolical == diabolical) && (f unsolvable == unsolvable) && (f minimal == minimal) && (f blank == blank)

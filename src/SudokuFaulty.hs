@@ -1,4 +1,4 @@
-module SudokuFaulty (solve) where
+module SudokuFaulty (solve, nodups, empty, single, cols, boxs, choices, prune, reduce, minus, fix, complete, consistent, blocked, search, expand) where
 -- SUDOKU IN HASKELL with a bunch of errors
 -- Errors by Sebastiaan Joosten, January 2020
 -- Based on a version by Graham Hutton, January 2020
