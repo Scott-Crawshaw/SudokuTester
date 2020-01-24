@@ -6,8 +6,8 @@ import TestHelpers
 import Test.Tasty.LeanCheck as LC
 
 main:: IO ()
-main = defaultMain (testGroup "Library Tests" [test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11, test12, test13, test14, test15, test16, test17, test18, test19, test20, test21, test22, test23, test24, test25, test26, test27, test28, test29, test30, test31])
-test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11, test12, test13, test14, test15, test16, test17, test18, test19, test20, test21, test22, test23, test24, test25, test26, test27, test28, test29, test30, test31 :: TestTree
+main = defaultMain (testGroup "Library Tests" [test1, test2, test3, test4, test5, test6, test32, test7, test8, test9, test10, test11, test12, test13, test14, test15, test16, test17, test18, test19, test20, test21, test22, test23, test24, test25, test26, test27, test28, test29, test30, test31])
+test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11, test12, test13, test14, test15, test16, test17, test18, test19, test20, test21, test22, test23, test24, test25, test26, test27, test28, test29, test30, test31, test32 :: TestTree
 test1 = localOption (Timeout 5000000"5 seconds") $
     testCase "Rows function is its own inverse" (assertBool "rows function is not its own inverse" (checkAllGridsID (rows.rows)))
 test2 = localOption (Timeout 5000000"5 seconds") $
@@ -34,8 +34,8 @@ test18 = LC.testProperty "The single method in SudokuCorrect and SudokuFaulty ar
     (\x -> (SudokuCorrect.single (x::[Digit])) == (SudokuFaulty.single (x::[Digit])))
 test19 = LC.testProperty "The cols method in SudokuCorrect and SudokuFaulty are equivalent"
     (\x -> (SudokuCorrect.cols (x::Grid)) == (SudokuFaulty.cols (x::Grid)))
-test20 = LC.testProperty "The boxs method in SudokuCorrect and SudokuFaulty are equivalent"
-    (\x -> (SudokuCorrect.boxs (x::Grid)) == (SudokuFaulty.boxs (x::Grid)))
+test20 = localOption (Timeout 5000000"5 seconds") $
+    testCase "The boxs method in SudokuCorrect and SudokuFaulty are equivalent" (assertBool "The boxs methods did not return the same value" ((SudokuCorrect.boxs easy == SudokuFaulty.boxs easy) && (SudokuCorrect.boxs minimal == SudokuFaulty.boxs minimal) && (SudokuCorrect.boxs unsolvable == SudokuFaulty.boxs unsolvable)))
 test21 = LC.testProperty "The nodups method in SudokuCorrect and SudokuFaulty are equivalent"
     (\x -> (SudokuCorrect.nodups (x::[Digit])) == (SudokuFaulty.nodups (x::[Digit])))
 test22 = LC.testProperty "The choices method in SudokuCorrect and SudokuFaulty are equivalent"
@@ -62,6 +62,8 @@ test5 = LC.testProperty "id = foldr (:) []"
     (\xs -> foldrID xs)
 test6 = LC.testProperty "filter p = foldr (\\x -> if p x then (:) x else id) []"
     (\xs -> filterFoldr odd xs && filterFoldr even xs && filterFoldr (<25) xs && filterFoldr (>0) xs)
+test32 = LC.testProperty "foldl f (f e x) = foldl f e . (x:)"
+    (\xs -> foldlTest xs)
 test7 = LC.testProperty "(m + 1) + n = (m + n) + 1"
     (\m n -> mnFunc m n)
 test8 = LC.testProperty "sum = foldr (+) 0"

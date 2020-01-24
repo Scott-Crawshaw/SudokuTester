@@ -1,7 +1,7 @@
 # Sudoku Tester
 
 ## Description
-This project is designed to test a variety of properties regarding various correct sudoku solving functions and one incorrect sudoku solving function.
+This project is designed to test a variety of properties regarding various correct sudoku solving functions and one incorrect sudoku solving function. It also serves to prove some general properties regarding built-in Haskell functions.
 
 ## Instructions
 To run the tests, simply open the command line, navigate to the SudokuTester folder, and call...

@@ -34,3 +34,6 @@ xmFunc x m = (x ^ (m + 1)) == (x * (x ^ m))
 
 xyFunc :: Double -> Int -> Bool
 xyFunc x y = (x ^^ y) == (x ^ y)
+
+foldlTest :: [Int] -> Bool
+foldlTest xs = ((((foldl (+) 3).(4:)) xs) == (foldl (+) ((+) 3 4) xs))
